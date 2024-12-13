@@ -1,0 +1,524 @@
+<div class="container-fluid" class="p-5">
+    <h3>New Layout Registration</h3>
+    <mat-stepper #stepper>
+        <mat-step>
+            <form [formGroup]="generalInfoForm">
+                <ng-template matStepLabel>General Info</ng-template>
+                <div class="row">
+                    <div class="col-md-3">
+                        <mat-form-field>
+                            <mat-label>Project Name:</mat-label>
+                            <input matInput formControlName="ProjectName" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field>
+                            <mat-label>Project Type:</mat-label>
+                            <mat-select formControlName="Type" required>
+                                <mat-option [value]="type" *ngFor="let type of Types">{{type}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field>
+                            <mat-label>Header Location:</mat-label>
+                            <input matInput formControlName="HeaderLocation" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field>
+                            <mat-label>Thumbnail:</mat-label>
+                            <mat-select formControlName="Thumbnail" required>
+                                <mat-option [value]="type" *ngFor="let type of Thumbnail">{{type}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <mat-form-field>
+                            <mat-label>Price per Sqft:</mat-label>
+                            <input matInput formControlName="PricePerSqft" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3 radioButtons">
+                        <label>DTCP Approved:</label>
+                        <mat-radio-group aria-label="Select an option" formControlName="DTCPApproved" required>
+                            <mat-radio-button value="Yes">Yes</mat-radio-button>
+                            <mat-radio-button value="No">No</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                    <div class="col-md-3 radioButtons">
+                        <label>RERA Approved:</label>
+                        <mat-radio-group aria-label="Select an option" formControlName="RERAApproved" required>
+                            <mat-radio-button value="Yes">Yes</mat-radio-button>
+                            <mat-radio-button value="No">No</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                    <div class="col-md-3 radioButtons">
+                        <label>Verified By Reydon:</label>
+                        <mat-radio-group aria-label="Select an option" formControlName="VerifiedByReydon" required>
+                            <mat-radio-button value="Yes">Yes</mat-radio-button>
+                            <mat-radio-button value="No">No</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <mat-form-field>
+                            <mat-label>Total Area (in acre):</mat-label>
+                            <input matInput type="number" formControlName="TotalArea" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field>
+                            <mat-label>Total Plots:</mat-label>
+                            <input matInput type="number" formControlName="TotalPlots" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field>
+                            <mat-label>Available Plots:</mat-label>
+                            <input matInput type="number" formControlName="AvailablePlots" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-3">
+                        <mat-form-field>
+                            <mat-label>No of Phases:</mat-label>
+                            <input matInput type="number" formControlName="NoOfPhases" required>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <mat-form-field>
+                            <mat-label>Youtube Link:</mat-label>
+                            <input matInput formControlName="YoutubeLink" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-8">
+                        <mat-form-field>
+                            <mat-label>Property Description:</mat-label>
+                            <input matInput formControlName="PropertyDescription" required>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center my-4">
+                    <button mat-fab extended matStepperNext class="px-5 py-2 fs-6">
+                        Next
+                    </button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step>
+            <form [formGroup]="addressForm">
+                <ng-template matStepLabel>Address details</ng-template>
+                <div class="row">
+                    <div class="col-md-3">
+                        <mat-form-field>
+                            <mat-label>Address</mat-label>
+                            <input matInput formControlName="Address" placeholder="Ex. Theni" required>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-3">
+                        <mat-form-field>
+                            <mat-label>Post Office</mat-label>
+                            <input matInput formControlName="PostOffice" placeholder="Ex. Cumbum" required>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-3">
+                        <mat-form-field>
+                            <mat-label>Taluk</mat-label>
+                            <input matInput formControlName="Taluk" placeholder="Ex. Periyakulam" required>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-3">
+                        <mat-form-field>
+                            <mat-label>Pin Code</mat-label>
+                            <input matInput formControlName="PinCode" placeholder="Ex. 625531" required>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-3">
+                        <mat-form-field>
+                            <mat-label>District</mat-label>
+                            <input matInput formControlName="District" placeholder="Ex. Theni" required>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-3">
+                        <mat-form-field>
+                            <mat-label>Landmark</mat-label>
+                            <input matInput formControlName="Landmark" placeholder="Ex. Near Bus Stand" required>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-3">
+                        <mat-form-field>
+                            <mat-label>Zone</mat-label>
+                            <input matInput formControlName="Zone" placeholder="Ex. South Zone" required>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-3">
+                        <mat-form-field>
+                            <mat-label>Topography</mat-label>
+                            <input matInput formControlName="Topography" placeholder="Ex. Plain Area" required>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-3">
+                        <mat-form-field>
+                            <mat-label>Latitude</mat-label>
+                            <input matInput type="number" formControlName="Latitude" placeholder="Ex. 9.9261" required>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-3">
+                        <mat-form-field>
+                            <mat-label>Longitude</mat-label>
+                            <input matInput type="number" formControlName="Longitude" placeholder="Ex. 77.5483"
+                                required>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center my-4">
+                    <button mat-fab extended matStepperPrevious class="px-5 py-2 fs-6">Back</button>
+                    <button mat-fab extended matStepperNext class="px-5 py-2 ms-3 fs-6">Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step>
+            <form [formGroup]="aminitiesForm">
+                <ng-template matStepLabel>Aminities</ng-template>
+                <div class="aminity-selection-panel py-3">
+                    <button [ngClass]="{'selected':isSelected(aminity)}" (click)="toggleAminity(aminity)" class="m-3"
+                        *ngFor="let aminity of amenityNames;let i=index" mat-raised-button>{{aminity}}
+                    </button>
+                </div>
+                <div class="d-flex justify-content-center my-4">
+                    <button mat-fab extended matStepperPrevious class="px-5 py-2 fs-6">Back</button>
+                    <button mat-fab extended matStepperNext class="px-5 py-2 ms-3 fs-6">Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step>
+            <form [formGroup]="proximitiesForm" (ngSubmit)="submitProximity()">
+                <ng-template matStepLabel>Proximities</ng-template>
+                <div class="row pt-5">
+                    <div class="col-md-2">
+                        <mat-form-field>
+                            <mat-label>Proximity Name</mat-label>
+                            <input matInput formControlName="ProximityName" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-1">
+                        <mat-form-field>
+                            <mat-label>Distance</mat-label>
+                            <input matInput type="number" formControlName="Distance" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="row">
+                            <div class="col-6">
+                                <mat-form-field>
+                                    <mat-label>Duration(hr)</mat-label>
+                                    <input matInput type="number" required formControlName="DurationHr">
+                                </mat-form-field>
+                            </div>
+                            <div class="col-6">
+                                <mat-form-field>
+                                    <mat-label>min</mat-label>
+                                    <input matInput type="number" formControlName="DurationMin" required>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <mat-form-field>
+                            <mat-label>Latitude</mat-label>
+                            <input matInput type="number" formControlName="Latitude" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-2">
+                        <mat-form-field>
+                            <mat-label>Longitude</mat-label>
+                            <input matInput type="number" formControlName="Longitude" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-2">
+                        <mat-form-field>
+                            <mat-label>Category</mat-label>
+                            <input matInput formControlName="Category" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-1 d-flex justify-content-center align-items-center">
+                        <button (click)="editIndex!==undefined?saveProximity():addProximity()" mat-raised-button
+                            class="proximity-add-button w-100 rounded-5"
+                            style="background-color: blueviolet;color: white;">{{editIndex!==undefined?'Save':'Add'}}</button>
+                    </div>
+                </div>
+                <div class="proximity-table my-5">
+                    <table class="table table-bordered table-responsive">
+                        <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th>Proximity Name</th>
+                                <th>Distance</th>
+                                <th>Duration</th>
+                                <th>Latitude</th>
+                                <th>Longitude</th>
+                                <th>Category</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let p of selectedProximities;let i=index">
+                                <td>{{i+1}}</td>
+                                <td>{{p.ProximityName}}</td>
+                                <td>{{p.Distance}}</td>
+                                <td>{{convertingToHrMin(p.Duration)}}</td>
+                                <td>{{p.Latitude}}</td>
+                                <td>{{p.Longitude}}</td>
+                                <td>{{p.Category}}</td>
+                                <td (click)="editProximity(i)">
+                                    <button mat-raised-button class="p-0"
+                                        style="background-color: blueviolet; color: white;">
+                                        <span class="material-symbols-outlined">edit</span>
+                                    </button>
+                                </td>
+                                <td (click)="deleteProximity(i)">
+                                    <button mat-raised-button style="background-color: red; color: white;">
+                                        <span class="material-symbols-outlined">delete</span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="d-flex justify-content-center my-4">
+                    <button mat-fab extended matStepperPrevious class="px-5 py-2 fs-6">Back</button>
+                    <button mat-fab extended matStepperNext type="submit" class="px-5 py-2 ms-3 fs-6">Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step>
+            <form [formGroup]="fiveReasonsForm" (ngSubmit)="submitFiveReasons()">
+                <ng-template matStepLabel>Five Reasons</ng-template>
+                <div class="row pt-5">
+                    <div class="col-md-4">
+                        <div class="reson-title">
+                            <mat-form-field>
+                                <mat-label>Title</mat-label>
+                                <input matInput formControlName="Title" required>
+                            </mat-form-field>
+                        </div>
+                        <div class="reson-description">
+                            <mat-form-field>
+                                <mat-label>Description</mat-label>
+                                <input matInput formControlName="Description" required>
+                            </mat-form-field>
+                        </div>
+                        <div class="reason-image">
+                            <label for="svgFile">Upload card icon:</label>
+                            <input type="file" id="svgFile" accept=".svg" (change)="onFileSelected($event)" #fileInput>
+                        </div>
+                        <div class="mt-3">
+                            <label>Preview:</label>
+                            <div class="preview-panel" style="width: 120px; height: 120px;border: 1px solid black">
+                                <img [src]="previewUrl" alt="SVG Preview"
+                                    style="max-width: 120px; max-height: 120px;" />
+                            </div>
+                        </div>
+                        <div class="w-auto d-flex justify-content-center align-items-center py-2">
+                            <button (click)="editIndex!==undefined?saveReason():addReason()" mat-raised-button
+                                class="proximity-add-button rounded-5"
+                                style="background-color: blueviolet;color: white;">{{editIndex!==undefined?'Save':'Add'}}</button>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="proximity-table my-5 my-md-3">
+                            <table class="table table-bordered table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Title</th>
+                                        <th>Description</th>
+                                        <th>Image</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let p of fiveReasons;let i=index">
+                                        <td>{{i+1}}</td>
+                                        <td>{{p.Title}}</td>
+                                        <td>{{p.Description}}</td>
+                                        <td><img [src]="p.ImageUrl" alt="SVG Image"
+                                                style="max-width: 40px; max-height: 40px;" /></td>
+                                        <td (click)="editReason(i)">
+                                            <button mat-raised-button class="p-0"
+                                                style="background-color: blueviolet; color: white;">
+                                                <span class="material-symbols-outlined">edit</span>
+                                            </button>
+                                        </td>
+                                        <td (click)="deleteReason(i)">
+                                            <button mat-raised-button style="background-color: red; color: white;">
+                                                <span class="material-symbols-outlined">delete</span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center my-4">
+                    <button mat-fab extended matStepperPrevious class="px-5 py-2 fs-6">Back</button>
+                    <button mat-fab extended matStepperNext type="submit" class="px-5 py-2 ms-3 fs-6">Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step>
+            <form class="legalFinancial" [formGroup]="legalAndfinancialForm">
+                <ng-template matStepLabel>Legal & Financial</ng-template>
+                <div class="row">
+                    <div class="col-md-4">
+                        <mat-form-field>
+                            <mat-label>DTCP Approval No:</mat-label>
+                            <input matInput formControlName="DTCPApprovalNo" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4">
+                        <mat-form-field>
+                            <mat-label>RERA Approval No:</mat-label>
+                            <input matInput formControlName="RERAApprovalNo" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-4 radioButtons">
+                        <label>Titdle Deed is Clear Document:</label>
+                        <mat-radio-group aria-label="Select an option" formControlName="TitdleDeedisClearDocument"
+                            required>
+                            <mat-radio-button value="Yes">Yes</mat-radio-button>
+                            <mat-radio-button value="No">No</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 radioButtons">
+                        <label>Litigation Property:</label>
+                        <mat-radio-group aria-label="Select an option" formControlName="LitigationProperty" required>
+                            <mat-radio-button value="Yes">Yes</mat-radio-button>
+                            <mat-radio-button value="No">No</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                    <div class="col-md-4 radioButtons">
+                        <label>Encumberance Certificate is Clear:</label>
+                        <mat-radio-group aria-label="Select an option" formControlName="EncumberanceCertificateisClear"
+                            required>
+                            <mat-radio-button value="Yes">Yes</mat-radio-button>
+                            <mat-radio-button value="No">No</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                    <div class="col-md-4 radioButtons">
+                        <label>Property is Under Hypothecation by Bank:</label>
+                        <mat-radio-group aria-label="Select an option"
+                            formControlName="PropertyisUnderHypothecationbyBank" required>
+                            <mat-radio-button value="Yes">Yes</mat-radio-button>
+                            <mat-radio-button value="No">No</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center my-4">
+                    <button mat-fab extended matStepperPrevious class="px-5 py-2 fs-6">Back</button>
+                    <button mat-fab extended matStepperNext type="submit" class="px-5 py-2 ms-3 fs-6">Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step>
+            <form [formGroup]="bankPartnersForm">
+                <ng-template matStepLabel>Banks</ng-template>
+                <div class="bank-selection-panel py-3">
+                    <button [ngClass]="{'selected':isBankSelected(bank)}" (click)="toggleBanks(bank)" class="m-3"
+                        *ngFor="let bank of bankNames;let i=index" mat-raised-button style="height: 80px;width: auto;">
+                        <img [src]="bankIconUrls[bank]" alt="" style="width:100%; height: 60px;">
+                    </button>
+                </div>
+                <div class="d-flex justify-content-center my-4">
+                    <button mat-fab extended matStepperPrevious class="px-5 py-2 fs-6">Back</button>
+                    <button mat-fab extended matStepperNext class="px-5 py-2 ms-3 fs-6">Next</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Documents & Images</ng-template>
+            <div class="row documents-section py-4">
+                <!-- Image Upload -->
+                <div class="col-md-6">
+                    <label for="images">Upload Layout Images:</label>
+                    <input type="file" id="images" multiple accept=".png,.jpg,.jpeg"
+                        (change)="onImagesSelected($event)">
+                    <div class="image-preview my-3 d-flex flex-wrap">
+                        <div *ngFor="let image of uploadedImages; let i = index" class="image-container m-2 d-flex flex-column">
+                            <img [src]="image" alt="Uploaded Image" class="preview-img"
+                                style="width: auto;height: 150px;object-fit: contain;">
+                            <button (click)="removeImage(i)"  class="btn btn-danger btn-sm m-2">Remove</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Brochure Upload -->
+                <div class="col-md-6">
+                    <label for="brouchure" class="mb-2" style="color: blueviolet;">Upload Layout Brochure:</label><br>
+                    <input type="file" multiple accept=".pdf" id="brouchure" (change)="onBrouchureSelected($event)"
+                        #brouchureFile>
+                    <div class="pdf-preview my-3">
+                        <div *ngFor="let file of uploadedBrouchures; let i = index"
+                            class="file-container d-flex align-items-center">
+                            <span class="material-symbols-outlined me-3"
+                                style=" width: 35px;height: 35px;color: red;font-size: 40px;">
+                                picture_as_pdf
+                            </span>
+                            <span>{{ file.name }}</span>
+                            <button (click)="removeBrouchure(i)" class="btn btn-danger btn-sm ms-2">Remove</button>
+                        </div>
+                    </div>
+
+                    <!-- Layout Map Upload -->
+                    <label for="layoutMap" class="mb-2" style="color: blueviolet;">Upload Layout Map:</label><br>
+                    <input type="file" multiple accept=".pdf" id="layoutMap" (change)="onLayoutMapSelected($event)"
+                        #layoutFile>
+                    <div class="pdf-preview">
+                        <div *ngFor="let file of uploadedLayoutMaps; let i = index"
+                            class="file-container d-flex align-items-center">
+                            <span class="material-symbols-outlined me-3"
+                                style=" width: 35px;height: 35px;color: red;font-size: 40px;">
+                                picture_as_pdf
+                            </span>
+                            <span>{{ file.name }}</span>
+                            <button (click)="removeLayoutMap(i)" class="btn btn-danger btn-sm ms-2">Remove</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-center my-4">
+                <button mat-fab extended matStepperPrevious class="px-5 py-2 fs-6">Back</button>
+                <button mat-fab extended matStepperNext class="px-5 py-2 ms-3 fs-6">Next</button>
+            </div>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Done</ng-template>
+            <p>You are now done.</p>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button (click)="stepper.reset()">Reset</button>
+            </div>
+        </mat-step>
+    </mat-stepper>
+</div>

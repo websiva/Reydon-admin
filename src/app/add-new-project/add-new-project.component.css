@@ -1,0 +1,57 @@
+.example-stepper {
+    margin-top: 8px;
+  }
+  
+  .mat-mdc-form-field {
+    margin-top: 16px;
+  }
+
+  .col-md-3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+  }
+  .radioButtons{
+    display: flex;
+    justify-content:flex-start;
+  }
+  mat-form-field{
+    width: 100%;
+  }
+
+  .aminity-selection-panel button.selected{
+    background-color: blueviolet;
+    color: white;
+  }
+
+  .aminity-selection-panel button{
+    background-color: white;
+    color: black;
+  }
+
+  .proximity-table td{
+    text-align: center;
+  }
+  .proximity-table th{
+    text-align: center;
+  }
+
+  .legalFinancial .col-md-4{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 20px 0;
+  }
+
+
+  /*****************Banks**************/
+  .bank-selection-panel button.selected{
+    background-color: gray;
+  }
+
+  /*************Documents***********/
+  .documents-section {
+
+  }
+  

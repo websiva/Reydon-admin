@@ -71,6 +71,8 @@ export class AddNewProjectComponent implements OnInit {
     'Bus Stop',
     'Eco Friendly Environment'
   ];
+  Zones:string[]=["Coimbatore","Dharmapuri","Villupuram","Trichy","Madurai","Tirunelveli","Chengalpattu","Chennai"];
+  Topography:string[]=["Foothills","Plains","Hilly Terrain","Flatland"];
 
   bankIconUrls: { [key: string]: string } = {
     SBI: 'https://res.cloudinary.com/dbzme4gd3/image/upload/v1726207782/SBI_smdxe4.png',
@@ -164,6 +166,13 @@ export class AddNewProjectComponent implements OnInit {
       this.bankPartnersForm = this.formBuilder.group({
         BankName: ['', Validators.required]
       })
+  }
+
+  //preventing 'E' and 'e' from input
+  preventEKey(event:KeyboardEvent){
+    if(event.key==='e'||event.key==='E'){
+      event.preventDefault();
+    }
   }
 
   toggleAminity(aminity: string) {

@@ -38,7 +38,8 @@
                     <div class="col-md-3">
                         <mat-form-field>
                             <mat-label>Price per Sqft:</mat-label>
-                            <input matInput formControlName="PricePerSqft" required>
+                            <input type="number" (keydown)="preventEKey($event)" matInput formControlName="PricePerSqft"
+                                required>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3 radioButtons">
@@ -67,25 +68,29 @@
                     <div class="col-md-3">
                         <mat-form-field>
                             <mat-label>Total Area (in acre):</mat-label>
-                            <input matInput type="number" formControlName="TotalArea" required>
+                            <input matInput (keydown)="preventEKey($event)" type="number" formControlName="TotalArea"
+                                required>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
                             <mat-label>Total Plots:</mat-label>
-                            <input matInput type="number" formControlName="TotalPlots" required>
+                            <input matInput (keydown)="preventEKey($event)" type="number" formControlName="TotalPlots"
+                                required>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
                             <mat-label>Available Plots:</mat-label>
-                            <input matInput type="number" formControlName="AvailablePlots" required>
+                            <input matInput (keydown)="preventEKey($event)" type="number"
+                                formControlName="AvailablePlots" required>
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
                         <mat-form-field>
                             <mat-label>No of Phases:</mat-label>
-                            <input matInput type="number" formControlName="NoOfPhases" required>
+                            <input matInput (keydown)="preventEKey($event)" type="number" formControlName="NoOfPhases"
+                                required>
                         </mat-form-field>
                     </div>
                 </div>
@@ -138,7 +143,8 @@
                     <div class="col-md-3">
                         <mat-form-field>
                             <mat-label>Pin Code</mat-label>
-                            <input matInput formControlName="PinCode" placeholder="Ex. 625531" required>
+                            <input matInput type="number" (keydown)="preventEKey($event)" formControlName="PinCode"
+                                placeholder="Ex. 625531" required>
                         </mat-form-field>
                     </div>
 
@@ -158,15 +164,19 @@
 
                     <div class="col-md-3">
                         <mat-form-field>
-                            <mat-label>Zone</mat-label>
-                            <input matInput formControlName="Zone" placeholder="Ex. South Zone" required>
+                            <mat-label>Zone</mat-label>                            
+                            <mat-select formControlName="Zone" required>
+                                <mat-option [value]="zone" *ngFor="let zone of Zones">{{zone}}</mat-option>
+                            </mat-select>
                         </mat-form-field>
                     </div>
 
                     <div class="col-md-3">
                         <mat-form-field>
                             <mat-label>Topography</mat-label>
-                            <input matInput formControlName="Topography" placeholder="Ex. Plain Area" required>
+                            <mat-select formControlName="Topography" required>
+                                <mat-option [value]="topography" *ngFor="let topography of Topography">{{topography}}</mat-option>
+                            </mat-select>
                         </mat-form-field>
                     </div>
 
@@ -464,10 +474,11 @@
                     <input type="file" id="images" multiple accept=".png,.jpg,.jpeg"
                         (change)="onImagesSelected($event)">
                     <div class="image-preview my-3 d-flex flex-wrap">
-                        <div *ngFor="let image of uploadedImages; let i = index" class="image-container m-2 d-flex flex-column">
+                        <div *ngFor="let image of uploadedImages; let i = index"
+                            class="image-container m-2 d-flex flex-column">
                             <img [src]="image" alt="Uploaded Image" class="preview-img"
                                 style="width: auto;height: 150px;object-fit: contain;">
-                            <button (click)="removeImage(i)"  class="btn btn-danger btn-sm m-2">Remove</button>
+                            <button (click)="removeImage(i)" class="btn btn-danger btn-sm m-2">Remove</button>
                         </div>
                     </div>
                 </div>

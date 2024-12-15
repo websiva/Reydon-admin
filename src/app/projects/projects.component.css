@@ -1,0 +1,17 @@
+.projects .table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    /* Adds smooth scrolling on mobile */
+}
+
+thead tr th{
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+}
+
+tbody tr td{
+    text-align: center;
+}

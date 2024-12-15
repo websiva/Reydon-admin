@@ -1,1 +1,28 @@
-<p>projects works!</p>
+<div class="container-fluid projects m-0 p-0 p-md-5">
+    <div class="table-responsive" style="overflow-x: auto;">
+        <table class="table table-bordered w-100">
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Project ID</th>
+                    <th>Project Name</th>
+                    <th>Type</th>
+                    <th>Category</th>
+                    <th>Zone</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="zone-name" *ngFor="let project of Projects;let i=index">
+                    <td>{{i+1}}</td>
+                    <td>{{project.ProjectId}}</td>
+                    <td>{{project.ProjectName}}</td>
+                    <td>{{project.Type}}</td>
+                    <td>{{project.Category}}</td>
+                    <td>{{project.Zone}}</td>
+                    <td><button class="btn btn-primary btn-sm">See Details</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -5,3 +5,7 @@
 body{
     font-family: "Inter", serif;
 }
+
+:root{
+    --primary-color:#004274;
+}

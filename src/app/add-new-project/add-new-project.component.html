@@ -1,7 +1,7 @@
 <div class="container-fluid" class="p-5">
     <h3>New Layout Registration</h3>
-    <mat-stepper #stepper>
-        <mat-step>
+    <mat-stepper #stepper [linear]="true">
+        <mat-step [stepControl]="generalInfoForm" [completed]="generalInfoForm.valid">
             <form [formGroup]="generalInfoForm">
                 <ng-template matStepLabel>General Info</ng-template>
                 <div class="row">
@@ -83,7 +83,7 @@
                         <mat-form-field>
                             <mat-label>Available Plots:</mat-label>
                             <input matInput (keydown)="preventEKey($event)" type="number"
-                                formControlName="AvailablePlots" required>
+                                formControlName="AvailablePlots" required [max]="TotalPlots?.value">
                         </mat-form-field>
                     </div>
                     <div class="col-md-3">
@@ -109,13 +109,13 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-center my-4">
-                    <button mat-fab extended matStepperNext class="px-5 py-2 fs-6">
+                    <button mat-fab extended matStepperNext [disabled]="generalInfoForm.invalid" class="px-5 py-2 fs-6">
                         Next
                     </button>
                 </div>
             </form>
         </mat-step>
-        <mat-step>
+        <mat-step [stepControl]="addressForm" [completed]="addressForm.valid">
             <form [formGroup]="addressForm">
                 <ng-template matStepLabel>Address details</ng-template>
                 <div class="row">
@@ -135,10 +135,10 @@
 
                     <div class="col-md-3">
                         <mat-form-field>
-                            <mat-label>Taluk</mat-label>
-                            <input matInput formControlName="Taluk" placeholder="Ex. Periyakulam" required>
+                            <mat-label>Landmark</mat-label>
+                            <input matInput formControlName="Landmark" placeholder="Ex. Near Bus Stand" required>
                         </mat-form-field>
-                    </div>
+                    </div>                    
 
                     <div class="col-md-3">
                         <mat-form-field>
@@ -147,29 +147,31 @@
                                 placeholder="Ex. 625531" required>
                         </mat-form-field>
                     </div>
-
-                    <div class="col-md-3">
-                        <mat-form-field>
-                            <mat-label>District</mat-label>
-                            <input matInput formControlName="District" placeholder="Ex. Theni" required>
-                        </mat-form-field>
-                    </div>
-
-                    <div class="col-md-3">
-                        <mat-form-field>
-                            <mat-label>Landmark</mat-label>
-                            <input matInput formControlName="Landmark" placeholder="Ex. Near Bus Stand" required>
-                        </mat-form-field>
-                    </div>
-
                     <div class="col-md-3">
                         <mat-form-field>
                             <mat-label>Zone</mat-label>                            
                             <mat-select formControlName="Zone" required>
-                                <mat-option [value]="zone" *ngFor="let zone of Zones">{{zone}}</mat-option>
+                                <mat-option [value]="zone.zoneName" *ngFor="let zone of zoneTableData">{{zone.zoneName}}</mat-option>
                             </mat-select>
                         </mat-form-field>
                     </div>
+                    <div class="col-md-3">
+                        <mat-form-field>
+                            <mat-label>District</mat-label>
+                            <mat-select formControlName="District" required>
+                                <mat-option [value]="district" *ngFor="let district of filteredZoneDistricts">{{district}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-3">
+                        <mat-form-field>
+                            <mat-label>Taluk</mat-label>
+                            <mat-select formControlName="Taluk" required>
+                                <mat-option [value]="taluk" *ngFor="let taluk of filteredTaluks">{{taluk.english}} ({{taluk.tamil}})</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>                   
 
                     <div class="col-md-3">
                         <mat-form-field>
@@ -198,11 +200,11 @@
 
                 <div class="d-flex justify-content-center my-4">
                     <button mat-fab extended matStepperPrevious class="px-5 py-2 fs-6">Back</button>
-                    <button mat-fab extended matStepperNext class="px-5 py-2 ms-3 fs-6">Next</button>
+                    <button mat-fab extended matStepperNext [disabled]="addressForm.invalid" class="px-5 py-2 ms-3 fs-6">Next</button>
                 </div>
             </form>
         </mat-step>
-        <mat-step>
+        <mat-step [stepControl]="aminitiesForm" [completed]="selectedAminities.length>0">
             <form [formGroup]="aminitiesForm">
                 <ng-template matStepLabel>Aminities</ng-template>
                 <div class="aminity-selection-panel py-3">
@@ -212,11 +214,11 @@
                 </div>
                 <div class="d-flex justify-content-center my-4">
                     <button mat-fab extended matStepperPrevious class="px-5 py-2 fs-6">Back</button>
-                    <button mat-fab extended matStepperNext class="px-5 py-2 ms-3 fs-6">Next</button>
+                    <button mat-fab extended matStepperNext [disabled]="!checkingPropertyLength('Aminities')" class="px-5 py-2 ms-3 fs-6">Next</button>
                 </div>
             </form>
         </mat-step>
-        <mat-step>
+        <mat-step [stepControl]="proximitiesForm" [completed]="selectedProximities.length>0">
             <form [formGroup]="proximitiesForm" (ngSubmit)="submitProximity()">
                 <ng-template matStepLabel>Proximities</ng-template>
                 <div class="row pt-5">
@@ -229,7 +231,7 @@
                     <div class="col-md-1">
                         <mat-form-field>
                             <mat-label>Distance</mat-label>
-                            <input matInput type="number" formControlName="Distance" required>
+                            <input matInput type="number" (keydown)="preventEKey($event)" formControlName="Distance" required>
                         </mat-form-field>
                     </div>
                     <div class="col-md-2">
@@ -237,13 +239,13 @@
                             <div class="col-6">
                                 <mat-form-field>
                                     <mat-label>Duration(hr)</mat-label>
-                                    <input matInput type="number" required formControlName="DurationHr">
+                                    <input matInput (keydown)="preventEKey($event)" type="number" required formControlName="DurationHr">
                                 </mat-form-field>
                             </div>
                             <div class="col-6">
                                 <mat-form-field>
                                     <mat-label>min</mat-label>
-                                    <input matInput type="number" formControlName="DurationMin" required>
+                                    <input matInput (keydown)="preventEKey($event)" type="number" formControlName="DurationMin" required>
                                 </mat-form-field>
                             </div>
                         </div>
@@ -251,19 +253,24 @@
                     <div class="col-md-2">
                         <mat-form-field>
                             <mat-label>Latitude</mat-label>
-                            <input matInput type="number" formControlName="Latitude" required>
+                            <input matInput (keydown)="preventEKey($event)" type="number" formControlName="Latitude" required>
                         </mat-form-field>
                     </div>
                     <div class="col-md-2">
                         <mat-form-field>
                             <mat-label>Longitude</mat-label>
-                            <input matInput type="number" formControlName="Longitude" required>
+                            <input matInput (keydown)="preventEKey($event)" type="number" formControlName="Longitude" required>
                         </mat-form-field>
                     </div>
                     <div class="col-md-2">
                         <mat-form-field>
                             <mat-label>Category</mat-label>
-                            <input matInput formControlName="Category" required>
+                            <mat-select formControlName="Category" required>
+                                <mat-option [value]="category" *ngFor="let category of ProximityCategory">
+                                    <mat-icon>{{ getIcon(category) }}</mat-icon>
+                                    <span>{{ category }}</span>
+                                </mat-option>
+                            </mat-select>
                         </mat-form-field>
                     </div>
                     <div class="col-md-1 d-flex justify-content-center align-items-center">
@@ -313,11 +320,11 @@
                 </div>
                 <div class="d-flex justify-content-center my-4">
                     <button mat-fab extended matStepperPrevious class="px-5 py-2 fs-6">Back</button>
-                    <button mat-fab extended matStepperNext type="submit" class="px-5 py-2 ms-3 fs-6">Next</button>
+                    <button mat-fab extended [disabled]="!checkingPropertyLength('Proximity')" matStepperNext type="submit" class="px-5 py-2 ms-3 fs-6">Next</button>
                 </div>
             </form>
         </mat-step>
-        <mat-step>
+        <mat-step [stepControl]="fiveReasonsForm" [completed]="fiveReasons.length===5">
             <form [formGroup]="fiveReasonsForm" (ngSubmit)="submitFiveReasons()">
                 <ng-template matStepLabel>Five Reasons</ng-template>
                 <div class="row pt-5">
@@ -390,11 +397,11 @@
                 </div>
                 <div class="d-flex justify-content-center my-4">
                     <button mat-fab extended matStepperPrevious class="px-5 py-2 fs-6">Back</button>
-                    <button mat-fab extended matStepperNext type="submit" class="px-5 py-2 ms-3 fs-6">Next</button>
+                    <button mat-fab extended matStepperNext [disabled]="!checkReasonsLength()" type="submit" class="px-5 py-2 ms-3 fs-6">Next</button>
                 </div>
             </form>
         </mat-step>
-        <mat-step>
+        <mat-step [stepControl]="legalAndfinancialForm" [completed]="legalAndfinancialForm.valid">
             <form class="legalFinancial" [formGroup]="legalAndfinancialForm">
                 <ng-template matStepLabel>Legal & Financial</ng-template>
                 <div class="row">
@@ -446,11 +453,11 @@
                 </div>
                 <div class="d-flex justify-content-center my-4">
                     <button mat-fab extended matStepperPrevious class="px-5 py-2 fs-6">Back</button>
-                    <button mat-fab extended matStepperNext type="submit" class="px-5 py-2 ms-3 fs-6">Next</button>
+                    <button mat-fab extended matStepperNext [disabled]="legalAndfinancialForm.invalid" type="submit" class="px-5 py-2 ms-3 fs-6">Next</button>
                 </div>
             </form>
         </mat-step>
-        <mat-step>
+        <mat-step [stepControl]="bankPartnersForm" [completed]="selectedBanks.size>0">
             <form [formGroup]="bankPartnersForm">
                 <ng-template matStepLabel>Banks</ng-template>
                 <div class="bank-selection-panel py-3">
@@ -461,7 +468,7 @@
                 </div>
                 <div class="d-flex justify-content-center my-4">
                     <button mat-fab extended matStepperPrevious class="px-5 py-2 fs-6">Back</button>
-                    <button mat-fab extended matStepperNext class="px-5 py-2 ms-3 fs-6">Next</button>
+                    <button mat-fab extended matStepperNext [disabled]="!checkingBankCounts()" class="px-5 py-2 ms-3 fs-6">Next</button>
                 </div>
             </form>
         </mat-step>

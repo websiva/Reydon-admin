@@ -7,6 +7,8 @@ import { newLayout } from '../Interfaces/newLayout';
 })
 export class LayoutService {
 
+
+
   apiUrl:string = "https://localhost:7277/";
   constructor(private http:HttpClient) { }
 

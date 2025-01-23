@@ -20,6 +20,8 @@ import { HomeComponent } from './home/home.component';
 import { AddNewProjectComponent } from './add-new-project/add-new-project.component';
 import { AsyncPipe } from '@angular/common';
 import { LayoutPreviewComponent } from './layout-preview/layout-preview.component';
+import { ImageToLinkComponent } from './image-to-link/image-to-link.component';
+import { EditProjectComponent } from './edit-project/edit-project.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { LayoutPreviewComponent } from './layout-preview/layout-preview.componen
     LoginComponent,
     HomeComponent,
     AddNewProjectComponent,
-    LayoutPreviewComponent
+    LayoutPreviewComponent,
+    ImageToLinkComponent,
+    EditProjectComponent
   ],
   imports: [
     BrowserModule,

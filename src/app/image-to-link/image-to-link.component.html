@@ -1,0 +1,18 @@
+<div class="reason-image">
+    <label for="svgFile">Upload card icon:</label>
+    <input type="file" id="svgFile" accept=".svg" multiple (change)="onFileSelected($event)" #fileInput>
+</div>
+<button (click)="generate()">Convert</button>
+<div class="mt-3">
+    <label>Preview:</label>
+    <div class="preview-panel" style="width: 120px; height: 120px;border: 1px solid black">
+        <div class="image-preview my-3 d-flex flex-wrap">
+            <div *ngFor="let image of uploadedImages; let i = index"
+                class="image-container m-2 d-flex flex-column">
+                <img [src]="image.imgUrl" alt="Uploaded Image" class="preview-img"
+                    style="width: auto;height: 150px;object-fit: contain;">                
+            </div>
+        </div>
+    </div>
+</div>
+

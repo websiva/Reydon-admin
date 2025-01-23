@@ -9,7 +9,9 @@
                     <th>Type</th>
                     <th>Category</th>
                     <th>Zone</th>
-                    <th>Actions</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                    <th>View Preview</th>
                 </tr>
             </thead>
             <tbody>
@@ -20,7 +22,35 @@
                     <td>{{project.Type}}</td>
                     <td>{{project.Category}}</td>
                     <td>{{project.Zone}}</td>
-                    <td><button class="btn btn-primary btn-sm">See Details</button></td>
+                    <td>
+                        <button class="btn btn-md btn-primary d-flex justify-content-center align-items-center mx-auto" (click)="editProject(project.ProjectId)">
+                            <mat-icon>
+                                <span class="material-symbols-outlined">
+                                    edit
+                                </span>
+                            </mat-icon>
+                            <span class="ms-2">Edit</span>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger btn-md d-flex justify-content-center align-items-center mx-auto">
+                            <mat-icon><span class="material-symbols-outlined">
+                                    delete
+                                </span>
+                            </mat-icon>
+                            <span class="ms-2">Delete</span>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn btn-primary btn-md d-flex justify-content-center align-items-center mx-auto"
+                            routerLink="/layout-preview"><mat-icon>
+                                <span class="material-symbols-outlined">
+                                    visibility
+                                </span>
+                            </mat-icon>
+                            <span class="ms-2">See details</span>
+                        </button>
+                    </td>
                 </tr>
             </tbody>
         </table>

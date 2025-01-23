@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { projectsTable } from '../Interfaces/projectsTable';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-projects',
@@ -7,6 +9,7 @@ import { projectsTable } from '../Interfaces/projectsTable';
   styleUrl: './projects.component.css'
 })
 export class ProjectsComponent {
+  filterForm:FormGroup;
   Projects: projectsTable[] = [
     {
       ProjectId: "TNLS001",
@@ -79,4 +82,17 @@ export class ProjectsComponent {
       Zone: "Vellore"
     }
   ];
+
+  constructor(private formBuilder: FormBuilder,private router:Router) {
+    this.filterForm = this.formBuilder.group({
+      bedId: [''],
+      vehicle: ['All'],
+      profession: ['All'],
+      state: ['All']
+    })
+  }
+
+  editProject(projectId:string){
+    this.router.navigate(['add-new-project'],{queryParams:{projectId:projectId}});
+  }
 }

@@ -7,6 +7,7 @@ import { authGuard } from './Guard/auth.guard';
 import { HomeComponent } from './home/home.component';
 import { AddNewProjectComponent } from './add-new-project/add-new-project.component';
 import { LayoutPreviewComponent } from './layout-preview/layout-preview.component';
+import { ImageToLinkComponent } from './image-to-link/image-to-link.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'add-new-project', component: AddNewProjectComponent },
   { path: 'layout-preview', component: LayoutPreviewComponent },
+  { path: 'image-to-link', component: ImageToLinkComponent },
   { path: '**', redirectTo: '/home' }
 ];
 
